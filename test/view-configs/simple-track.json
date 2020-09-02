@@ -10,14 +10,19 @@
       "tracks": {
         "top": [
           {
-            "type": "horizontal-clinvar",
-            "height": 110,
-            "tilesetUid": "clinvar_20200824_v5",
-            "server": "http://localhost:8001/api/v1",
-            "uid": "clinvar_20200824_v5",
+            "uid": "texttrack4",
+            "type": "text",
             "options": {
-              "name": "Clinvar"
-            }
+              "backgroundColor": "#8F00FF",
+              "textColor": "#ffffff",
+              "fontSize": 10,
+              "fontWeight": "normal",
+              "offsetY": 5,
+              "align": "right",
+              "text": "Description 3"
+            },
+            "width": 20,
+            "height": 20
           }
         ],
         "left": [],
