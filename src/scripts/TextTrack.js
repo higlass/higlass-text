@@ -19,7 +19,6 @@ const TextTrack = (HGC, ...args) => {
       context.dataFetcher = new EmptyDataFetcher(context.dataConfig);
 
       super(context, options);
-      console.log(context, options);
 
       this.isTrackShownVertically =
         context.definition.position === "left" ||
@@ -77,7 +76,7 @@ const TextTrack = (HGC, ...args) => {
     renderText() {
       this.pForeground.clear();
       this.pForeground.removeChildren();
-      console.log(this.textOptions);
+
       const text = new HGC.libraries.PIXI.Text(this.text, this.textOptions);
       text.interactive = true;
       text.anchor.x = 0;
@@ -88,40 +87,39 @@ const TextTrack = (HGC, ...args) => {
       const margin = 5;
       text.x = margin;
 
-      if(!this.isTrackShownVertically){
-        if(this.options.align === "left"){
+      if (!this.isTrackShownVertically) {
+        if (this.options.align === "left") {
           text.anchor.x = 0;
           text.x = margin;
-        }
-        else if(this.options.align === "middle"){
+          this.svgAnchor = "start";
+        } else if (this.options.align === "middle") {
           text.anchor.x = 0.5;
           text.x = this.dimensions[0] / 2;
-        }
-        else if(this.options.align === "right"){
+          this.svgAnchor = "middle";
+        } else if (this.options.align === "right") {
           text.anchor.x = 1;
           text.x = this.dimensions[0] - margin;
+          this.svgAnchor = "end";
         }
-      }
-      else{
-        if(this.options.align === "left"){
+      } else {
+        if (this.options.align === "right") {
           text.anchor.x = 1;
           text.scale.x *= -1;
-        }
-        else if(this.options.align === "middle"){
+          this.svgAnchor = "end";
+        } else if (this.options.align === "middle") {
           text.anchor.x = 0.5;
           text.scale.x *= -1;
           text.x = this.dimensions[0] / 2;
-        }
-        else if(this.options.align === "right"){
+          this.svgAnchor = "middle";
+        } else if (this.options.align === "left") {
           text.anchor.x = 0;
           text.scale.x *= -1;
           text.x = this.dimensions[0] - margin;
+          this.svgAnchor = "start";
         }
       }
-      
-      
 
-      
+      this.svgX = text.x;
 
       this.pForeground.addChild(text);
     }
@@ -185,6 +183,41 @@ const TextTrack = (HGC, ...args) => {
       );
 
       gClipPath.appendChild(output);
+
+      // Background
+      const gBackground = document.createElement("g");
+      const rBackground = document.createElement("path");
+      const dBackground = `M 0 0 H ${this.dimensions[0]} V ${this.dimensions[1]} H 0 Z`;
+      rBackground.setAttribute("d", dBackground);
+      rBackground.setAttribute("fill", this.options.backgroundColor);
+      rBackground.setAttribute("opacity", "1");
+      gBackground.appendChild(rBackground);
+      output.appendChild(gBackground);
+
+      // Text
+      const gText = document.createElement("g");
+      const t = document.createElement("text");
+      t.setAttribute("text-anchor", this.svgAnchor);
+      t.setAttribute("font-family", this.options.fontFamily);
+      t.setAttribute("font-size", `${this.fontSize}px`);
+      //t.setAttribute("alignment-baseline", "top");
+      t.setAttribute("font-weight", this.options.fontWeight);
+
+      gText.setAttribute("transform", `scale(1,1)`);
+
+      t.setAttribute("fill", this.options.textColor);
+      t.innerHTML = this.options.text;
+
+      const scalefactor = this.isTrackShownVertically ? -1 : 1;
+
+      gText.appendChild(t);
+      gText.setAttribute(
+        "transform",
+        `translate(${this.svgX},${
+          this.options.offsetY + this.fontSize
+        })scale(${scalefactor},1)`
+      );
+      output.appendChild(gText);
 
       return [base, base];
     }
