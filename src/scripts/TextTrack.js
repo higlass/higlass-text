@@ -245,8 +245,8 @@ TextTrack.config = {
     "text",
   ],
   defaultOptions: {
-    backgroundColor: "#808080",
-    textColor: "#ffffff",
+    backgroundColor: "#ededed",
+    textColor: "#333333",
     fontSize: 14,
     fontFamily: "Arial",
     fontWeight: "normal",
