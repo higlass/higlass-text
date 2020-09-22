@@ -20,7 +20,7 @@ npm install higlass-text
 
 The live script can be found at:
 
-- https://unpkg.com/higlass-transcripts/dist/higlass-text.js
+- https://unpkg.com/higlass-text/dist/higlass-text.js
 
 ### Client
 
@@ -61,7 +61,7 @@ The following options are available:
 
 We also build out ES modules for usage by applications who may need to import or use `higlass-text` as a component.
 
-Whenever there is a statement such as the following, assuming `higlass-clinvar` is in your node_modules folder:
+Whenever there is a statement such as the following, assuming `higlass-text` is in your node_modules folder:
 ```javascript
 import { TextTrack } from 'higlass-text';
 ```
