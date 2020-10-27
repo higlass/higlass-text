@@ -20,6 +20,9 @@ const TextTrack = (HGC, ...args) => {
 
       super(context, options);
 
+      const { animate } = context;
+      this.animate = animate;
+
       this.isTrackShownVertically =
         context.definition.position === "left" ||
         context.definition.position === "right";
@@ -65,6 +68,8 @@ const TextTrack = (HGC, ...args) => {
       this.prevOptions = strOptions;
 
       this.renderText();
+
+      requestAnimationFrame(this.animate);
     }
 
     drawTile(tile) {}
