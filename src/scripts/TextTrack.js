@@ -28,7 +28,7 @@ const TextTrack = (HGC, ...args) => {
         context.definition.position === "right";
 
       this.options = options;
-      this.initOptions();
+      this.initOptions();      
     }
 
     initTile(tile) {}
@@ -137,6 +137,12 @@ const TextTrack = (HGC, ...args) => {
     destroyTile(tile) {
       tile.graphics.destroy();
       tile = null;
+    }
+
+    setDimensions(newDimensions) {
+      super.setDimensions(newDimensions);
+      // We have to rerender here, otherwise it does not fire at all sometimes
+      this.rerender(this.options, false)
     }
 
     getMouseOverHtml(trackX, trackY) {}
