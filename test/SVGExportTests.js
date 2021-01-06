@@ -48,6 +48,7 @@ describe("SVG export", () => {
 
         expect(trackObj.svgAnchor).to.equal("end");
         expect(trackObj.svgX).to.equal(765);
+        expect(trackObj.svgX).to.equal(1);
 
         done();
       }, 2000);
