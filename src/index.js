@@ -8,3 +8,5 @@ register({
   config: TextTrack.config,
 });
 
+export default TextTrack;
+
