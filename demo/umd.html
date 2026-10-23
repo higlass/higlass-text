@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>HiGlass Text (script tags)</title>
+    <style>
+      #demo {
+        position: absolute;
+        inset: 1rem;
+        overflow: hidden;
+      }
+    </style>
+    <!--
+      The same setup as for external users: React, Pixi and HiGlass from a CDN,
+      followed by higlass-text, which registers the track when loaded. Here the
+      local build is used (run `npm run build` first); outside of this repo use
+      https://unpkg.com/higlass-text@1/dist/higlass-text.js
+    -->
+    <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/pixi.js@6.5.10/dist/browser/pixi.min.js"></script>
+    <script>
+      // HiGlass' UMD build expects a `ReactJSXRuntime` global, which React
+      // doesn't ship as a script. This maps it onto React.createElement.
+      window.ReactJSXRuntime = window.ReactJSXRuntime || {
+        Fragment: React.Fragment,
+        jsx: (type, props, key) =>
+          React.createElement(type, key === undefined ? props : { ...props, key }),
+        jsxs: (type, props, key) =>
+          React.createElement(type, key === undefined ? props : { ...props, key }),
+      };
+    </script>
+    <script src="https://unpkg.com/higlass@2.3.5/dist/hglib.min.js"></script>
+    <script src="/dist/higlass-text.js"></script>
+  </head>
+  <body>
+    <div id="demo"></div>
+    <script type="module">
+      import { viewConfig } from './viewconf.js';
+
+      window.hgApi = window.hglib.viewer(
+        document.getElementById('demo'),
+        viewConfig,
+        { bounded: true },
+      );
+    </script>
+  </body>
+</html>

@@ -8,9 +8,10 @@
 *.gz
 node_modules
 dist
-es
 *.zip
 *.log
 *.DS_cache
 .idea/
 *.DS_Store
+*.tgz
+test/browser/__screenshots__

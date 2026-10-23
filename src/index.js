@@ -1,12 +1,5 @@
-import register from 'higlass-register';
+import TextTrack from './TextTrack';
 
-import { TextTrack} from './scripts';
-
-register({
-  name: 'TextTrack',
-  track: TextTrack,
-  config: TextTrack.config,
-});
-
+export { registerTextTrack } from './register';
+export { TextTrack };
 export default TextTrack;
-
