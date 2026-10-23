@@ -1,9 +1,7 @@
 {
   "editable": true,
   "zoomFixed": false,
-  "trackSourceServers": [
-    "http://localhost:8001/api/v1"
-  ],
+  "trackSourceServers": ["http://localhost:8001/api/v1"],
   "exportViewUrl": "/api/v1/viewconfs/",
   "views": [
     {
@@ -32,14 +30,8 @@
         "whole": [],
         "gallery": []
       },
-      "initialXDomain": [
-        2027616.1882798017,
-        2027647.1246295166
-      ],
-      "initialYDomain": [
-        -2681066463.2434807,
-        -2681066462.7975874
-      ],
+      "initialXDomain": [2027616.1882798017, 2027647.1246295166],
+      "initialYDomain": [-2681066463.2434807, -2681066462.7975874],
       "layout": {
         "w": 12,
         "h": 12,
