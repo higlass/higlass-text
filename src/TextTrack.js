@@ -145,13 +145,22 @@ const icon =
 
 let thumbnail;
 
+// Greys plus the d3 category10 colors, which stay readable as text.
 const COLORS = [
   ['Black', '#000000'],
   ['Dark Grey', '#333333'],
   ['Grey', '#777777'],
+  ['Light Grey', '#cccccc'],
   ['White', '#ffffff'],
-  ['Red', '#ff0000'],
-  ['Blue', '#0000ff'],
+  ['Red', '#d62728'],
+  ['Orange', '#ff7f0e'],
+  ['Yellow', '#ffd700'],
+  ['Green', '#2ca02c'],
+  ['Teal', '#17becf'],
+  ['Blue', '#1f77b4'],
+  ['Purple', '#9467bd'],
+  ['Pink', '#e377c2'],
+  ['Brown', '#8c564b'],
 ];
 
 const inlineOptions = (values, name = (v) => v) =>
