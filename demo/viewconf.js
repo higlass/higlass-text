@@ -33,6 +33,15 @@ export const viewConfig = {
             fontWeight: 'bold',
           }),
           {
+            // The genome position search box needs a chromosome track with a
+            // tileset.
+            uid: 'chroms',
+            type: 'horizontal-chromosome-labels',
+            height: 30,
+            server,
+            tilesetUid: 'N12wVGG9SPiTkk03yUayUw',
+          },
+          {
             uid: 'genes',
             type: 'horizontal-gene-annotations',
             height: 60,
