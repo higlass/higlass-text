@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.1
+
+1.0.0 was tagged but never published to npm, so this is the first 1.x release on npm. It includes all changes listed under 1.0.0.
+
+- Removed the `engines` field, which made npm warn about the Node.js version when installing this browser package. Development still requires Node.js >= 20.19.
+- Added `homepage` and `bugs` links and normalized the `repository` field in `package.json`.
+- Releases are published from GitHub Actions with npm trusted publishing.
+
 ## 1.0.0
 
 Requires HiGlass 2.x.
