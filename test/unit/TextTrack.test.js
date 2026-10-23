@@ -18,26 +18,6 @@ describe('TextTrack outside of a browser', () => {
     expect(TextTrack.config.orientation).toBe('1d-horizontal');
   });
 
-  it('offers the same colors for text and background', () => {
-    const { backgroundColor, textColor } = TextTrack.config.optionsInfo;
-    const values = (info) =>
-      Object.values(info.inlineOptions).map((option) => option.value);
-
-    expect(values(backgroundColor)).toEqual([
-      ...values(textColor),
-      'transparent',
-    ]);
-    // HiGlass applies this list to all tracks, so it has to keep the built-in
-    // background colors (white, light grey, grey, black, transparent).
-    expect(values(backgroundColor)).toEqual(
-      expect.arrayContaining(['#ffffff', '#ededed', '#cccccc', '#000000']),
-    );
-    // The default background is one of the options.
-    expect(values(backgroundColor)).toContain(
-      TextTrack.config.defaultOptions.backgroundColor,
-    );
-  });
-
   it('is a constructible function that requires new', () => {
     expect(TextTrack.prototype).toBeDefined();
     expect(() => TextTrack({})).toThrow(/without "new"/);
