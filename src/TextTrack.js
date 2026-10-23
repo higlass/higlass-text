@@ -139,8 +139,9 @@ function TextTrack(HGC, ...args) {
   return new TextTrackClass(...args);
 }
 
+// A "T" on the track's default background and text colors.
 const icon =
-  '<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="M-1-1h22v22H-1z"/><g><path stroke="#007fff" stroke-width="1.5" fill="#007fff" d="M-.667-.091h5v20.167h-5z"/><path stroke-width="1.5" stroke="#e8e500" fill="#e8e500" d="M5.667.242h5v20.167h-5z"/><path stroke-width="1.5" stroke="#ff0038" fill="#ff0038" d="M15.833.076h5v20.167h-5z"/><path stroke="green" stroke-width="1.5" fill="green" d="M10.833-.258H14.5v20.167h-3.667z"/></g></svg>';
+  '<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="19" height="19" rx="3" fill="#ededed" stroke="#999999"/><path fill="#333333" d="M5 4.5h10v2.75h-3.6V15.5H8.6V7.25H5z"/></svg>';
 
 let thumbnail;
 
