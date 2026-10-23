@@ -16,7 +16,7 @@ Requires HiGlass 2.x.
 
 - `registerTextTrack({ force })` registers the track on `window.higlassTracksByType` for ES module users.
 - The package can be imported outside of a browser, e.g. during server-side rendering. The track thumbnail is created lazily.
-- Options menu entries for text color, font family, font weight and vertical offset.
+- Options menu entries for text color, font family, font weight and vertical offset, and more background colors. Because HiGlass shares plugin option lists across tracks, the extended background color list also appears for other tracks; it includes all of HiGlass' built-in background colors.
 - Track default options are also applied when the track is only passed through HiGlass' `pluginTracks` option.
 
 ### Fixes

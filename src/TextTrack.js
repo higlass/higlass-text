@@ -151,6 +151,7 @@ const COLORS = [
   ['Dark Grey', '#333333'],
   ['Grey', '#777777'],
   ['Light Grey', '#cccccc'],
+  ['Very Light Grey', '#ededed'],
   ['White', '#ffffff'],
   ['Red', '#d62728'],
   ['Orange', '#ff7f0e'],
@@ -165,6 +166,9 @@ const COLORS = [
 
 const inlineOptions = (values, name = (v) => v) =>
   Object.fromEntries(values.map((v) => [v, { name: name(v), value: v }]));
+
+const colorOptions = (colors) =>
+  Object.fromEntries(colors.map(([name, value]) => [value, { name, value }]));
 
 TextTrack.config = {
   type: 'text',
@@ -192,11 +196,16 @@ TextTrack.config = {
     'offsetY',
   ],
   optionsInfo: {
+    // HiGlass applies plugin options info to all tracks, so this replaces the
+    // built-in background color list everywhere. It contains all of the
+    // built-in colors, so other tracks only gain options.
+    backgroundColor: {
+      name: 'Background Color',
+      inlineOptions: colorOptions([...COLORS, ['Transparent', 'transparent']]),
+    },
     textColor: {
       name: 'Text Color',
-      inlineOptions: Object.fromEntries(
-        COLORS.map(([name, value]) => [value, { name, value }]),
-      ),
+      inlineOptions: colorOptions(COLORS),
     },
     fontFamily: {
       name: 'Font Family',
