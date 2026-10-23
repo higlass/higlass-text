@@ -1,3 +1,5 @@
+import { playwright } from '@vitest/browser-playwright';
+
 const CHROME_ARGS = ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'];
 
 /** @type {import("vite").UserConfigFnObject} */
@@ -45,14 +47,12 @@ export default ({ mode }) => ({
           include: ['test/browser/**/*.test.js'],
           browser: {
             enabled: true,
-            provider: 'playwright',
+            // Uses the installed Google Chrome, so no browser download is needed.
+            provider: playwright({
+              launchOptions: { channel: 'chrome', args: CHROME_ARGS },
+            }),
             headless: true,
-            instances: [
-              {
-                browser: 'chromium',
-                launch: { channel: 'chrome', args: CHROME_ARGS },
-              },
-            ],
+            instances: [{ browser: 'chromium' }],
           },
         },
       },
