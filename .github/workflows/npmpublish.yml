@@ -1,4 +1,8 @@
 # Runs the tests and publishes the package to npm when a version tag is pushed.
+#
+# Publishing uses npm trusted publishing (OIDC), so no npm token is needed.
+# It requires a trusted publisher for this workflow in the package settings
+# on npmjs.com (repository higlass/higlass-text, workflow npmpublish.yml).
 
 name: Node.js Package
 
@@ -6,6 +10,9 @@ on:
   push:
     tags:
       - "v*"
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -23,14 +30,17 @@ jobs:
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # lets npm authenticate with GitHub's OIDC token
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           registry-url: https://registry.npmjs.org/
+      # Trusted publishing needs npm >= 11.5.1, Node 20 ships with npm 10.
+      - run: npm install -g npm@^11.5.1
       - run: npm ci
       - run: npm run build
       - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}

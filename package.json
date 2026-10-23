@@ -10,7 +10,14 @@
       "url": "http://github.com/alexander-veit"
     }
   ],
-  "repository": "github:higlass/higlass-text",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/higlass/higlass-text.git"
+  },
+  "homepage": "https://github.com/higlass/higlass-text#readme",
+  "bugs": {
+    "url": "https://github.com/higlass/higlass-text/issues"
+  },
   "keywords": ["higlass", "plugin", "track", "text"],
   "main": "./dist/higlass-text.js",
   "module": "./dist/higlass-text.mjs",
@@ -25,9 +32,6 @@
   },
   "files": ["dist", "CHANGELOG.md"],
   "sideEffects": ["./dist/higlass-text.js"],
-  "engines": {
-    "node": ">=20.19"
-  },
   "scripts": {
     "start": "vite",
     "build": "vite build && vite build --mode umd",
